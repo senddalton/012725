@@ -1,5 +1,5 @@
 function reservar() {
-            alert('Reserva realizada con éxito. ¡Gracias por elegirnos!');
+            window.location.href = "https://senddalton.ddns.net/sites/one_porcent/main.php";
         }
 
         // Auto-scroll y deslizamiento táctil
