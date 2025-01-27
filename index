@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estética</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header {
+            background-color: #f8b4c0;
+            padding: 1rem;
+            text-align: center;
+        }
+        header img {
+            max-width: 150px;
+        }
+        .cards {
+            display: flex;
+            gap: 1rem;
+            padding: 2rem;
+            background-color: #fff4f7;
+            overflow: hidden;
+            scroll-behavior: smooth;
+            -ms-overflow-style: none; /* Ocultar scroll en IE y Edge */
+            scrollbar-width: none; /* Ocultar scroll en Firefox */
+        }
+        .cards::-webkit-scrollbar {
+            display: none; /* Ocultar scroll en Chrome, Safari y Opera */
+        }
+        .card {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            padding: 1rem;
+            text-align: center;
+            flex: 0 0 auto;
+        }
+        .card img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+        .prices {
+            padding: 2rem;
+            background-color: #ffe0e6;
+        }
+        .prices h2 {
+            text-align: center;
+        }
+        .prices ul {
+            list-style: none;
+            padding: 0;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .prices ul li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #ccc;
+        }
+        .buttons {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .buttons button {
+            background-color: #f8b4c0;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .buttons button:hover {
+            background-color: #e09aab;
+        }
+        .map {
+            margin: 2rem auto;
+            text-align: center;
+        }
+        .map iframe {
+            width: 90%;
+            height: 300px;
+            border: 0;
+            border-radius: 8px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+        }
+        footer a {
+            color: #f8b4c0;
+            margin: 0 0.5rem;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Logo de la Estética">
+    </header>
+
+    <section class="cards" id="carousel">
+        <div class="card">
+            <img src="imagen1.jpg" alt="Servicio 1">
+            <h3>Servicio 1</h3>
+            <p>Descripción breve del servicio.</p>
+        </div>
+        <div class="card">
+            <img src="imagen2.jpg" alt="Servicio 2">
+            <h3>Servicio 2</h3>
+            <p>Descripción breve del servicio.</p>
+        </div>
+        <div class="card">
+            <img src="imagen3.jpg" alt="Servicio 3">
+            <h3>Servicio 3</h3>
+            <p>Descripción breve del servicio.</p>
+        </div>
+    </section>
+
+    <section class="prices">
+        <h2>Lista de Precios</h2>
+        <ul>
+            <li>Servicio 1 - $100</li>
+            <li>Servicio 2 - $200</li>
+            <li>Servicio 3 - $300</li>
+        </ul>
+    </section>
+
+    <div class="buttons">
+        <button onclick="reservar()">Reservar</button>
+    </div>
+
+    <div class="map">
+        <h2>Encuéntranos aquí</h2>
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3168.948255827368!2d-122.08424968468157!3d37.422065779825504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb24b5b5f2df7%3A0x41bcb1d6afc9eb2f!2sGoogleplex!5e0!3m2!1ses!2sus!4v1618314537004!5m2!1ses!2sus" 
+            allowfullscreen="" 
+            loading="lazy">
+        </iframe>
+    </div>
+
+    <footer>
+        <p>Síguenos en nuestras redes sociales:</p>
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">Twitter</a>
+    </footer>
+
+    <script>
+        function reservar() {
+            alert('Reserva realizada con éxito. ¡Gracias por elegirnos!');
+        }
+
+        // Auto-scroll y deslizamiento táctil
+        const carousel = document.getElementById('carousel');
+        let scrollInterval;
+
+        const startAutoScroll = () => {
+            scrollInterval = setInterval(() => {
+                carousel.scrollBy({ left: 260, behavior: 'smooth' });
+                if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth) {
+                    carousel.scrollTo({ left: 0, behavior: 'smooth' });
+                }
+            }, 2000);
+        };
+
+        const stopAutoScroll = () => {
+            clearInterval(scrollInterval);
+        };
+
+        carousel.addEventListener('mousedown', stopAutoScroll);
+        carousel.addEventListener('touchstart', stopAutoScroll);
+        carousel.addEventListener('mouseup', startAutoScroll);
+        carousel.addEventListener('touchend', startAutoScroll);
+
+        startAutoScroll();
+    </script>
+</body>
+</html>
