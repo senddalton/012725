@@ -1,0 +1,98 @@
+body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header {
+            background-color: #f8b4c0;
+            padding: 1rem;
+            text-align: center;
+        }
+        header img {
+            max-width: 150px;
+        }
+        .cards {
+            display: flex;
+            gap: 1rem;
+            padding: 2rem;
+            background-color: #fff4f7;
+            overflow: hidden;
+            scroll-behavior: smooth;
+            -ms-overflow-style: none; /* Ocultar scroll en IE y Edge */
+            scrollbar-width: none; /* Ocultar scroll en Firefox */
+        }
+        .cards::-webkit-scrollbar {
+            display: none; /* Ocultar scroll en Chrome, Safari y Opera */
+        }
+        .card {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            padding: 1rem;
+            text-align: center;
+            flex: 0 0 auto;
+        }
+        .card img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+        .prices {
+            padding: 2rem;
+            background-color: #ffe0e6;
+        }
+        .prices h2 {
+            text-align: center;
+        }
+        .prices ul {
+            list-style: none;
+            padding: 0;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .prices ul li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #ccc;
+        }
+        .buttons {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .buttons button {
+            background-color: #f8b4c0;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .buttons button:hover {
+            background-color: #e09aab;
+        }
+        .map {
+            margin: 2rem auto;
+            text-align: center;
+        }
+        .map iframe {
+            width: 90%;
+            height: 300px;
+            border: 0;
+            border-radius: 8px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+        }
+        footer a {
+            color: #f8b4c0;
+            margin: 0 0.5rem;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
