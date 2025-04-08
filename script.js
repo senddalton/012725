@@ -74,3 +74,86 @@ document.addEventListener('DOMContentLoaded', function() {
         moveCarousel(currentIndex);
     });
 });
+
+// Galería Slider
+document.addEventListener('DOMContentLoaded', function() {
+    // Configuración del slider
+    const slider = document.querySelector('.gallery-slider');
+    const slides = document.querySelectorAll('.gallery-slide');
+    const prevBtn = document.querySelector('.gallery-prev');
+    const nextBtn = document.querySelector('.gallery-next');
+    const dotsContainer = document.querySelector('.gallery-dots');
+    let currentSlide = 0;
+    let slideInterval;
+
+    // Crear puntos indicadores
+    slides.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.classList.add('gallery-dot');
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(index));
+        dotsContainer.appendChild(dot);
+    });
+
+    const dots = document.querySelectorAll('.gallery-dot');
+
+    // Mostrar slide actual
+    function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        
+        slides[index].classList.add('active');
+        dots[index].classList.add('active');
+        currentSlide = index;
+    }
+
+    // Siguiente slide
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    // Slide anterior
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    // Ir a slide específico
+    function goToSlide(index) {
+        showSlide(index);
+        resetInterval();
+    }
+
+    // Auto-avance
+    function startInterval() {
+        slideInterval = setInterval(nextSlide, 5000);
+    }
+
+    function resetInterval() {
+        clearInterval(slideInterval);
+        startInterval();
+    }
+
+    // Event listeners
+    nextBtn.addEventListener('click', () => {
+        nextSlide();
+        resetInterval();
+    });
+
+    prevBtn.addEventListener('click', () => {
+        prevSlide();
+        resetInterval();
+    });
+
+    // Iniciar
+    showSlide(currentSlide);
+    startInterval();
+
+    // Pausar al interactuar
+    slider.addEventListener('mouseenter', () => {
+        clearInterval(slideInterval);
+    });
+
+    slider.addEventListener('mouseleave', startInterval);
+});
