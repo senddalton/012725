@@ -3,62 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estética</title>
+    <meta name="description" content="Salón de estética profesional con los mejores tratamientos de belleza. Reserva tu cita hoy mismo.">
+    <title>Estética Bella - Tratamientos de Belleza Profesionales</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <img src="logo.png" alt="Logo de la Estética">
+        <img src="logo.png" alt="Logo de Estética Bella - Tratamientos profesionales de belleza" width="150" height="150">
+        <h1>Estética Bella</h1>
     </header>
 
-    <section class="cards" id="carousel">
-        <div class="card">
-            <img src="imagen1.jpg" alt="Servicio 1">
-            <h3>Servicio 1</h3>
-            <p>Descripción breve del servicio.</p>
-        </div>
-        <div class="card">
-            <img src="imagen2.jpg" alt="Servicio 2">
-            <h3>Servicio 2</h3>
-            <p>Descripción breve del servicio.</p>
-        </div>
-        <div class="card">
-            <img src="imagen3.jpg" alt="Servicio 3">
-            <h3>Servicio 3</h3>
-            <p>Descripción breve del servicio.</p>
-        </div>
-    </section>
+    <main>
+        <section class="cards-container" aria-labelledby="servicios-titulo">
+            <h2 id="servicios-titulo">Nuestros Servicios</h2>
+            <div class="cards" id="carousel">
+                <div class="card" tabindex="0">
+                    <img src="imagen1.jpg" alt="Servicio de faciales profesionales" loading="lazy">
+                    <h3>Faciales Profesionales</h3>
+                    <p>Tratamientos faciales personalizados para todo tipo de piel.</p>
+                </div>
+                <div class="card" tabindex="0">
+                    <img src="imagen2.jpg" alt="Servicio de masajes relajantes" loading="lazy">
+                    <h3>Masajes Relajantes</h3>
+                    <p>Terapias de relajación para aliviar el estrés y tensiones.</p>
+                </div>
+                <div class="card" tabindex="0">
+                    <img src="imagen3.jpg" alt="Servicio de depilación láser" loading="lazy">
+                    <h3>Depilación Láser</h3>
+                    <p>Tecnología avanzada para una depilación permanente.</p>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <button id="prev-btn" aria-label="Anterior servicio">‹</button>
+                <button id="next-btn" aria-label="Siguiente servicio">›</button>
+            </div>
+        </section>
 
-    <section class="prices">
-        <h2>Lista de Precios</h2>
-        <ul>
-            <li>Servicio 1 - $100</li>
-            <li>Servicio 2 - $200</li>
-            <li>Servicio 3 - $300</li>
-        </ul>
-    </section>
+        <section class="prices" aria-labelledby="precios-titulo">
+            <h2 id="precios-titulo">Lista de Precios</h2>
+            <ul>
+                <li>Facial Profesional - $1,200</li>
+                <li>Masaje Relajante (60 min) - $800</li>
+                <li>Depilación Láser (por zona) - $1,500</li>
+                <li>Manicure y Pedicure - $600</li>
+                <li>Tratamiento Capilar - $900</li>
+            </ul>
+        </section>
 
-    <div class="buttons">
-        <button onclick="reservar()">Reservar</button>
-    </div>
+        <div class="buttons">
+            <button onclick="reservar()" aria-label="Reservar cita ahora">Reservar</button>
+        </div>
 
-    <div class="map">
-        <h2>Encuéntranos aquí</h2>
-        <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d222.3381948614515!2d-105.6595269390792!3d26.922178263620545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2smx!4v1738001653759!5m2!1ses-419!2smx" 
-            width="600" 
-            height="450" 
-            style="border:0;" 
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
+        <section class="map-container" aria-labelledby="ubicacion-titulo">
+            <h2 id="ubicacion-titulo">Encuéntranos aquí</h2>
+            <div class="map">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d222.3381948614515!2d-105.6595269390792!3d26.922178263620545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2smx!4v1738001653759!5m2!1ses-419!2smx" 
+                    width="100%" 
+                    height="100%"
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade"
+                    aria-label="Mapa de ubicación de Estética Bella">
+                </iframe>
+            </div>
+        </section>
+    </main>
 
     <footer>
-        <p>Síguenos en nuestras redes sociales:</p>
-        <a href="#">Facebook</a>
-        <a href="#">Instagram</a>
-        <a href="#">Twitter</a>
+        <h2>Síguenos en nuestras redes sociales</h2>
+        <div class="social-links">
+            <a href="#" aria-label="Facebook de Estética Bella">Facebook</a>
+            <a href="#" aria-label="Instagram de Estética Bella">Instagram</a>
+            <a href="#" aria-label="TikTok de Estética Bella">TikTok</a>
+        </div>
+        <p>&copy; 2023 Estética Bella. Todos los derechos reservados.</p>
     </footer>
 
     <script src="script.js"></script>
