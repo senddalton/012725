@@ -157,3 +157,36 @@ document.addEventListener('DOMContentLoaded', function() {
 
     slider.addEventListener('mouseleave', startInterval);
 });
+
+// Versión compatible con GitHub Pages
+document.addEventListener('DOMContentLoaded', function() {
+    if ('IntersectionObserver' in window) {
+        // Usar IntersectionObserver si está disponible
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {threshold: 0.1});
+
+        document.querySelectorAll('section, .map-container, .prices, .gallery-section').forEach(function(section) {
+            observer.observe(section);
+        });
+    } else {
+        // Fallback para navegadores antiguos
+        function checkScroll() {
+            document.querySelectorAll('section, .map-container, .prices, .gallery-section').forEach(function(section) {
+                const position = section.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+
+                if(position < screenPosition) {
+                    section.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('load', checkScroll);
+        window.addEventListener('scroll', checkScroll);
+    }
+});
