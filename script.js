@@ -1,8 +1,9 @@
 function reservar() {
+    // Cambia esta URL por la de tu sistema de reservas
     window.location.href = "https://senddalton.ddns.net/sites/one_porcent";
 }
 
-// Carrusel mejorado
+// Carrusel mejorado (el mismo código anterior funciona perfecto)
 document.addEventListener('DOMContentLoaded', function() {
     const carousel = document.getElementById('carousel');
     const prevBtn = document.getElementById('prev-btn');
