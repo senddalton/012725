@@ -1,22 +1,21 @@
 function reservar() {
-    // Cambia esta URL por la de tu sistema de reservas
     window.location.href = "https://senddalton.ddns.net/sites/one_porcent";
 }
 
-// Carrusel mejorado (el mismo código anterior funciona perfecto)
-document.addEventListener('DOMContentLoaded', function() {
-    const carousel = document.getElementById('carousel');
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
-    const cards = document.querySelectorAll('.card');
+// Función para manejar carruseles de manera genérica
+function setupCarousel(carouselId, prevBtnId, nextBtnId, autoScrollDelay = 4000) {
+    const carousel = document.getElementById(carouselId);
+    const prevBtn = document.getElementById(prevBtnId);
+    const nextBtn = document.getElementById(nextBtnId);
+    const cards = carousel.querySelectorAll('.card');
     let currentIndex = 0;
     let scrollInterval;
 
-    // Calcular el ancho de una tarjeta + gap
+    if (!carousel || !prevBtn || !nextBtn || cards.length === 0) return;
+
     const cardStyle = window.getComputedStyle(cards[0]);
     const cardWidth = cards[0].offsetWidth + parseInt(cardStyle.marginRight);
 
-    // Función para mover el carrusel
     function moveCarousel(index) {
         currentIndex = index;
         carousel.scrollTo({
@@ -25,25 +24,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Controles del carrusel
-    nextBtn.addEventListener('click', function() {
+    function nextSlide() {
         currentIndex = (currentIndex + 1) % cards.length;
         moveCarousel(currentIndex);
-        resetAutoScroll();
-    });
+    }
 
-    prevBtn.addEventListener('click', function() {
+    function prevSlide() {
         currentIndex = (currentIndex - 1 + cards.length) % cards.length;
         moveCarousel(currentIndex);
-        resetAutoScroll();
-    });
+    }
 
-    // Auto-scroll
     function startAutoScroll() {
-        scrollInterval = setInterval(function() {
-            currentIndex = (currentIndex + 1) % cards.length;
-            moveCarousel(currentIndex);
-        }, 4000);
+        scrollInterval = setInterval(nextSlide, autoScrollDelay);
     }
 
     function resetAutoScroll() {
@@ -51,33 +43,33 @@ document.addEventListener('DOMContentLoaded', function() {
         startAutoScroll();
     }
 
-    // Pausar al interactuar
-    carousel.addEventListener('mouseenter', function() {
-        clearInterval(scrollInterval);
+    // Event listeners
+    nextBtn.addEventListener('click', () => {
+        nextSlide();
+        resetAutoScroll();
     });
 
+    prevBtn.addEventListener('click', () => {
+        prevSlide();
+        resetAutoScroll();
+    });
+
+    // Interacción con el carrusel
+    const pauseAutoScroll = () => clearInterval(scrollInterval);
+    const resumeAutoScroll = () => setTimeout(startAutoScroll, autoScrollDelay);
+
+    carousel.addEventListener('mouseenter', pauseAutoScroll);
     carousel.addEventListener('mouseleave', startAutoScroll);
+    carousel.addEventListener('touchstart', pauseAutoScroll);
+    carousel.addEventListener('touchend', resumeAutoScroll);
 
-    carousel.addEventListener('touchstart', function() {
-        clearInterval(scrollInterval);
-    });
-
-    carousel.addEventListener('touchend', function() {
-        setTimeout(startAutoScroll, 5000);
-    });
-
-    // Iniciar auto-scroll
+    // Iniciar
     startAutoScroll();
+    window.addEventListener('resize', () => moveCarousel(currentIndex));
+}
 
-    // Detectar cambios de tamaño para ajustar el scroll
-    window.addEventListener('resize', function() {
-        moveCarousel(currentIndex);
-    });
-});
-
-// Galería Slider
-document.addEventListener('DOMContentLoaded', function() {
-    // Configuración del slider
+// Función para manejar sliders de galería
+function setupGallerySlider() {
     const slider = document.querySelector('.gallery-slider');
     const slides = document.querySelectorAll('.gallery-slide');
     const prevBtn = document.querySelector('.gallery-prev');
@@ -85,6 +77,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const dotsContainer = document.querySelector('.gallery-dots');
     let currentSlide = 0;
     let slideInterval;
+
+    if (!slider || slides.length === 0) return;
 
     // Crear puntos indicadores
     slides.forEach((_, index) => {
@@ -97,7 +91,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const dots = document.querySelectorAll('.gallery-dot');
 
-    // Mostrar slide actual
     function showSlide(index) {
         slides.forEach(slide => slide.classList.remove('active'));
         dots.forEach(dot => dot.classList.remove('active'));
@@ -107,25 +100,21 @@ document.addEventListener('DOMContentLoaded', function() {
         currentSlide = index;
     }
 
-    // Siguiente slide
     function nextSlide() {
         currentSlide = (currentSlide + 1) % slides.length;
         showSlide(currentSlide);
     }
 
-    // Slide anterior
     function prevSlide() {
         currentSlide = (currentSlide - 1 + slides.length) % slides.length;
         showSlide(currentSlide);
     }
 
-    // Ir a slide específico
     function goToSlide(index) {
         showSlide(index);
         resetInterval();
     }
 
-    // Auto-avance
     function startInterval() {
         slideInterval = setInterval(nextSlide, 5000);
     }
@@ -146,41 +135,43 @@ document.addEventListener('DOMContentLoaded', function() {
         resetInterval();
     });
 
+    // Interacción con el slider
+    slider.addEventListener('mouseenter', () => clearInterval(slideInterval));
+    slider.addEventListener('mouseleave', startInterval);
+
     // Iniciar
     showSlide(currentSlide);
     startInterval();
+}
 
-    // Pausar al interactuar
-    slider.addEventListener('mouseenter', () => {
-        clearInterval(slideInterval);
-    });
+// Animaciones al hacer scroll
+function setupScrollAnimations() {
+    const sections = document.querySelectorAll('section, .map-container, .prices, .gallery-section, .buttons');
+    
+    if (sections.length === 0) return;
 
-    slider.addEventListener('mouseleave', startInterval);
-});
-
-// Versión compatible con GitHub Pages
-document.addEventListener('DOMContentLoaded', function() {
     if ('IntersectionObserver' in window) {
-        // Usar IntersectionObserver si está disponible
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(function(entry) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
+                    // observer.unobserve(entry.target); // Opcional
                 }
             });
-        }, {threshold: 0.1});
-
-        document.querySelectorAll('section, .map-container, .prices, .gallery-section').forEach(function(section) {
-            observer.observe(section);
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
         });
+
+        sections.forEach(section => observer.observe(section));
     } else {
         // Fallback para navegadores antiguos
         function checkScroll() {
-            document.querySelectorAll('section, .map-container, .prices, .gallery-section').forEach(function(section) {
-                const position = section.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.3;
-
-                if(position < screenPosition) {
+            const triggerPoint = window.innerHeight * 0.85;
+            
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                if (sectionTop < triggerPoint) {
                     section.classList.add('visible');
                 }
             });
@@ -188,5 +179,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
         window.addEventListener('load', checkScroll);
         window.addEventListener('scroll', checkScroll);
+    }
+}
+
+// Inicialización cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', function() {
+    setupCarousel('carousel', 'prev-btn', 'next-btn');
+    setupGallerySlider();
+    setupScrollAnimations();
+    
+    // Efecto del logo (si lo necesitas)
+    const logo = document.querySelector('header img');
+    if (logo) {
+        logo.addEventListener('click', function() {
+            this.style.transform = 'scale(1.2) rotate(5deg)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1.08)';
+            }, 300);
+        });
     }
 });
