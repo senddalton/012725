@@ -426,6 +426,8 @@ section.visible, .map-container.visible, .prices.visible, .gallery-section.visib
 
 .map-container {
     transform: translateX(200px);
+    margin-right: 200px;
+    width: calc(100% - 200px);
 }
 
 /* Transiciones visibles */
