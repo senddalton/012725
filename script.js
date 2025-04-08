@@ -1,5 +1,5 @@
 function reservar() {
-    window.location.href = "https://senddalton.ddns.net/sites/one_porcent/main.php";
+    window.location.href = "https://senddalton.ddns.net/sites/one_porcent";
 }
 
 // Carrusel mejorado
