@@ -1,27 +1,75 @@
 function reservar() {
-            window.location.href = "https://senddalton.ddns.net/sites/one_porcent/main.php";
-        }
+    window.location.href = "https://senddalton.ddns.net/sites/one_porcent/main.php";
+}
 
-        // Auto-scroll y deslizamiento táctil
-        const carousel = document.getElementById('carousel');
-        let scrollInterval;
+// Carrusel mejorado
+document.addEventListener('DOMContentLoaded', function() {
+    const carousel = document.getElementById('carousel');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const cards = document.querySelectorAll('.card');
+    let currentIndex = 0;
+    let scrollInterval;
 
-        const startAutoScroll = () => {
-            scrollInterval = setInterval(() => {
-                carousel.scrollBy({ left: 260, behavior: 'smooth' });
-                if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth) {
-                    carousel.scrollTo({ left: 0, behavior: 'smooth' });
-                }
-            }, 2000);
-        };
+    // Calcular el ancho de una tarjeta + gap
+    const cardStyle = window.getComputedStyle(cards[0]);
+    const cardWidth = cards[0].offsetWidth + parseInt(cardStyle.marginRight);
 
-        const stopAutoScroll = () => {
-            clearInterval(scrollInterval);
-        };
+    // Función para mover el carrusel
+    function moveCarousel(index) {
+        currentIndex = index;
+        carousel.scrollTo({
+            left: index * cardWidth,
+            behavior: 'smooth'
+        });
+    }
 
-        carousel.addEventListener('mousedown', stopAutoScroll);
-        carousel.addEventListener('touchstart', stopAutoScroll);
-        carousel.addEventListener('mouseup', startAutoScroll);
-        carousel.addEventListener('touchend', startAutoScroll);
+    // Controles del carrusel
+    nextBtn.addEventListener('click', function() {
+        currentIndex = (currentIndex + 1) % cards.length;
+        moveCarousel(currentIndex);
+        resetAutoScroll();
+    });
 
+    prevBtn.addEventListener('click', function() {
+        currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+        moveCarousel(currentIndex);
+        resetAutoScroll();
+    });
+
+    // Auto-scroll
+    function startAutoScroll() {
+        scrollInterval = setInterval(function() {
+            currentIndex = (currentIndex + 1) % cards.length;
+            moveCarousel(currentIndex);
+        }, 4000);
+    }
+
+    function resetAutoScroll() {
+        clearInterval(scrollInterval);
         startAutoScroll();
+    }
+
+    // Pausar al interactuar
+    carousel.addEventListener('mouseenter', function() {
+        clearInterval(scrollInterval);
+    });
+
+    carousel.addEventListener('mouseleave', startAutoScroll);
+
+    carousel.addEventListener('touchstart', function() {
+        clearInterval(scrollInterval);
+    });
+
+    carousel.addEventListener('touchend', function() {
+        setTimeout(startAutoScroll, 5000);
+    });
+
+    // Iniciar auto-scroll
+    startAutoScroll();
+
+    // Detectar cambios de tamaño para ajustar el scroll
+    window.addEventListener('resize', function() {
+        moveCarousel(currentIndex);
+    });
+});
