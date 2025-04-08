@@ -291,6 +291,111 @@ footer p {
     color: #aaa;
 }
 
+/* Estilos para la galería slider */
+.gallery-section {
+    padding: 5vh 5vw;
+    background-color: #f8f8f8;
+    text-align: center;
+}
+
+.gallery-section h2 {
+    font-size: clamp(1.3rem, 2.5vw, 2rem);
+    color: #1a1a1a;
+    margin-bottom: 3vh;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.gallery-slider {
+    position: relative;
+    width: 90vw;
+    max-width: 800px;
+    height: 50vh;
+    max-height: 500px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+}
+
+.gallery-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.gallery-slide.active {
+    opacity: 1;
+}
+
+.gallery-controls {
+    margin-top: 2vh;
+    display: flex;
+    justify-content: center;
+    gap: 3vw;
+}
+
+.gallery-controls button {
+    background-color: #1a1a1a;
+    color: #d4af37;
+    border: none;
+    width: 8vw;
+    height: 8vw;
+    max-width: 50px;
+    max-height: 50px;
+    border-radius: 50%;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.gallery-controls button:hover {
+    background-color: #d4af37;
+    color: #1a1a1a;
+}
+
+.gallery-dots {
+    display: flex;
+    justify-content: center;
+    gap: 1vw;
+    margin-top: 2vh;
+}
+
+.gallery-dot {
+    width: 2vw;
+    height: 2vw;
+    max-width: 15px;
+    max-height: 15px;
+    border-radius: 50%;
+    background-color: #ccc;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.gallery-dot.active {
+    background-color: #1a1a1a;
+}
+
+/* Efecto hover para las imágenes */
+.gallery-slide img {
+    transition: transform 0.5s ease;
+}
+
+.gallery-slide img:hover {
+    transform: scale(1.05);
+}
+
 /* Media queries para ajustes específicos */
 @media (min-width: 768px) {
     .cards {
