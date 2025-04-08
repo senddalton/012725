@@ -22,11 +22,40 @@ header {
     border-bottom: 3px solid #d4af37;
 }
 
+/* Animación segura para GitHub Pages */
 header img {
     width: 15vw;
     max-width: 150px;
     height: auto;
     margin-bottom: 1vh;
+    animation: logoBounce 4s ease-in-out infinite;
+    transform-origin: center bottom;
+    transition: all 0.3s ease;
+}
+
+/* Keyframes con prefijos para mayor compatibilidad */
+@-webkit-keyframes logoBounce {
+    0%, 100% { -webkit-transform: translateY(0) rotate(0deg); transform: translateY(0) rotate(0deg); }
+    15% { -webkit-transform: translateY(-8px) rotate(2deg); transform: translateY(-8px) rotate(2deg); }
+    30% { -webkit-transform: translateY(0) rotate(0deg); transform: translateY(0) rotate(0deg); }
+    45% { -webkit-transform: translateY(-4px) rotate(-1deg); transform: translateY(-4px) rotate(-1deg); }
+    60% { -webkit-transform: translateY(0) rotate(0deg); transform: translateY(0) rotate(0deg); }
+}
+
+@keyframes logoBounce {
+    0%, 100% { -webkit-transform: translateY(0) rotate(0deg); transform: translateY(0) rotate(0deg); }
+    15% { -webkit-transform: translateY(-8px) rotate(2deg); transform: translateY(-8px) rotate(2deg); }
+    30% { -webkit-transform: translateY(0) rotate(0deg); transform: translateY(0) rotate(0deg); }
+    45% { -webkit-transform: translateY(-4px) rotate(-1deg); transform: translateY(-4px) rotate(-1deg); }
+    60% { -webkit-transform: translateY(0) rotate(0deg); transform: translateY(0) rotate(0deg); }
+}
+
+header img:hover {
+    -webkit-animation: none;
+    animation: none;
+    -webkit-transform: scale(1.08);
+    transform: scale(1.08);
+    cursor: pointer;
 }
 
 header h1 {
