@@ -413,19 +413,19 @@ section.visible, .map-container.visible, .prices.visible, .gallery-section.visib
 
 /* Efectos personalizados */
 .cards-container {
-    transform: translateX(-50px);
+    transform: translateX(-200px);
 }
 
 .prices {
-    transform: translateY(30px);
+    transform: translateY(100px);
 }
 
 .gallery-section {
-    transform: scale(0.95);
+    transform: scale(0.25);
 }
 
 .map-container {
-    transform: translateX(50px);
+    transform: translateX(200px);
 }
 
 /* Transiciones visibles */
