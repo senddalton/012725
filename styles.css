@@ -396,6 +396,75 @@ footer p {
     transform: scale(1.05);
 }
 
+
+/* Transiciones al hacer scroll */
+section, .map-container, .prices, .gallery-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+section.visible, .map-container.visible, .prices.visible, .gallery-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Retrasos diferentes para cada sección */
+.cards-container.visible {
+    transition-delay: 0.2s;
+}
+
+.prices.visible {
+    transition-delay: 0.4s;
+}
+
+.buttons.visible {
+    transition-delay: 0.6s;
+}
+
+.gallery-section.visible {
+    transition-delay: 0.8s;
+}
+
+.map-container.visible {
+    transition-delay: 1s;
+}
+
+/* Efectos personalizados */
+.cards-container {
+    transform: translateX(-50px);
+}
+
+.prices {
+    transform: translateY(30px);
+}
+
+.gallery-section {
+    transform: scale(0.95);
+}
+
+.map-container {
+    transform: translateX(50px);
+}
+
+/* Transiciones visibles */
+.cards-container.visible {
+    transform: translateX(0);
+}
+
+.prices.visible {
+    transform: translateY(0);
+}
+
+.gallery-section.visible {
+    transform: scale(1);
+}
+
+.map-container.visible {
+    transform: translateX(0);
+}
+
+
 /* Media queries para ajustes específicos */
 @media (min-width: 768px) {
     .cards {
