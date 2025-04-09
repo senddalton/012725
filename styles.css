@@ -417,7 +417,7 @@ section.visible, .map-container.visible, .prices.visible, .gallery-section.visib
 }
 
 .prices {
-    transform: translateX(200px);
+    transform: translateX(-200px);
 }
 
 .gallery-section {
@@ -425,9 +425,7 @@ section.visible, .map-container.visible, .prices.visible, .gallery-section.visib
 }
 
 .map-container {
-    transform: translateX(200px);
-    margin-right: 200px;
-    width: calc(100% - 200px);
+    transform: translateX(-200px);
 }
 
 /* Transiciones visibles */
@@ -436,7 +434,7 @@ section.visible, .map-container.visible, .prices.visible, .gallery-section.visib
 }
 
 .prices.visible {
-    transform: translateY(0);
+    transform: translateX(0);
 }
 
 .gallery-section.visible {
