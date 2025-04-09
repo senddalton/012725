@@ -417,7 +417,7 @@ section.visible, .map-container.visible, .prices.visible, .gallery-section.visib
 }
 
 .prices {
-    transform: translateY(100px);
+    transform: translateX(200px);
 }
 
 .gallery-section {
